@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -8,7 +9,9 @@
         {% endblock %}
     </head>
     <body>
+        {% include('navbar.html.twig') %}
         {% block body %}{% endblock %}
+        {% include('footer.html.twig') %}
         {% block javascripts %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
