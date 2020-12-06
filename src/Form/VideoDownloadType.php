@@ -8,7 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class VideoDownloadType extends AbstractType
 {
@@ -18,7 +18,7 @@ class VideoDownloadType extends AbstractType
             ->add('input', UrlType::class, [
                 'required' => true,
             ])
-            ->add('submit', ButtonType::class)
+            ->add('submit', SubmitType::class)
         ;
     }
 
