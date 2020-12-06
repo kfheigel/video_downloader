@@ -10,14 +10,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class VideoDownloadType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): FormBuilderInterface
     {
         $builder
             ->add('field_name')
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): OptionsResolver
     {
         $resolver->setDefaults([
             // Configure your form options here
