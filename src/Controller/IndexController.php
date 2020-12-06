@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Psr\Log\LoggerInterface;
+use App\Form\VideoDownloadType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,9 +18,11 @@ class IndexController extends AbstractController
     public function index(LoggerInterface $logger): Response
     {
         $logger->info('IndexController started working');
-        dump($this);
+
+        $form = $this->createForm(VideoDownloadType::class);
+
         return $this->render('index/index.html.twig', [
-            'controller_name' => 'IndexController',
+            'form' => $form->createView(),
         ]);
     }
 }
