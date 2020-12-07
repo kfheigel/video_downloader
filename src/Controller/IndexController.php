@@ -25,6 +25,8 @@ class IndexController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+        }else{
+            $data['input'] = 'kaka';
         }
 
         return $this->render('index/index.html.twig', [
