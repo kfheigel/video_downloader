@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Validator;
 
 use App\Validator\YoutubeUrl;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+use Symfony\Component\Validator\Exception\UnexpectedValueException;
 
 class YoutubeUrlValidator extends ConstraintValidator
 {
@@ -22,7 +25,6 @@ class YoutubeUrlValidator extends ConstraintValidator
         if (!is_string($value)) {
             throw new UnexpectedValueException($value, 'string');
         }
-// || !preg_match('/\S*youtu.be\/\S*/', $value, $matches)
         if (!preg_match('/\S*youtube.com\/watch\?v=\S*/', $value, $matches) && !preg_match('/\S*youtu.be\/\S*/', $value, $matches)){
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ url }}', $value)

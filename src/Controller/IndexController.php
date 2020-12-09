@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Service\Downloader;
 use Psr\Log\LoggerInterface;
 use App\Form\VideoDownloadType;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +17,7 @@ class IndexController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index(Request $request, LoggerInterface $logger): Response
+    public function index(Request $request, LoggerInterface $logger, Downloader $youtubeDownload): Response
     {
         $logger->info('IndexController started working');
 
@@ -25,13 +26,15 @@ class IndexController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-        }else{
-            $data['input'] = 'kaka';
+            $logger->info('Form is submitted');
+            $links = $youtubeDownload->downloadVideo($data['input']);
         }
+
+        
 
         return $this->render('index/index.html.twig', [
             'form' => $form->createView(),
-            'link' => $data['input'],
+            'links' => $links,
         ]);
     }
 }
