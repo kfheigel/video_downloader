@@ -27,6 +27,7 @@ class IndexController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $videoLink = $data['input'];
+
             $logger->info('Form is submitted');
             $links = $youtubeDownload->downloadVideo($videoLink);
             $videoId = $youtubeDownload->videoId($videoLink);
@@ -34,8 +35,6 @@ class IndexController extends AbstractController
             $links = '';
             $videoId = '';
         }
-
-        
 
         return $this->render('index/index.html.twig', [
             'form' => $form->createView(),
