@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}About{% endblock %}
+
+{% block body %}
+
+<header class="masthead text-black mt-5">
+    <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <h2 class="mt-3"> 
+                        <div>Heivice</div></br>
+                    </h2>
+                    <div>
+                        Is a multipurpose service, for all your needs! Right now there is available <a href="{{ path('downloader') }}">YouTube Downloader</a> but there will be more services to come in the future. 
+                    </div></br>
+                    <div>
+                        A sneak peak for the next thing is an URL shortener! Stay tuned! 
+                    </div>                      
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <h2 class="mt-5"> 
+                        <div>About me</div></br>
+                    </h2>  
+                    <div>
+                         My name is Krzysztof Heigel and this page is an exercise field for raising my php and backend skills in general. All the things I'll learn in the future, eventually will end up here to check if I understand all of nuances correctly. I hope you'll enjoy my website and try to find any bugs that will appear here ;)
+                    </div></br>             
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% endblock %}

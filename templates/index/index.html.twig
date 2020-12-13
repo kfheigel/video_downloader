@@ -1,26 +1,28 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Heivice{% endblock %}
+
 {% block body %}
-<div class="container">
-    Video Downloader v 0.3
-    {% include('index/form.html.twig') %}
-
-    {% if videoId != "" %}
-        <img src="https://img.youtube.com/vi/{{ videoId }}/mqdefault.jpg">
-    
-    <div class="btn-group">
-        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Results
-        </button>
-        <div class="dropdown-menu">
-
-        {% for link in links %}
-            <a class="dropdown-item" target="_blank" href="{{ link.url }}">{{ link.format }}</a>
-        {% endfor %}
+<header class="masthead text-black text-center mt-5">
+    <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <h2 class="mb-5"> 
+                        <div>Welcome to</div></br>
+                        <div class="mt-2 mb-2 h1" >Heivice</div></br>
+                        <div>a service for all your needs!</div>
+                    </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <h2 class="mb-5"> 
+                        <div>For support, please contact me via mail</div>
+                    </h2>
+                </div>
+            </div>
         </div>
     </div>
-    {% endif %}
-
-</div>
-
+</header>
 {% endblock %}
