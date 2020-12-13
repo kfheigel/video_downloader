@@ -18,11 +18,13 @@ class VideoDownloadType extends AbstractType
         $builder
             ->add('input', UrlType::class, [
                 'required' => true,
+                'label' => false,
                 'constraints' => [
                     new YoutubeUrl(),
                 ],
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+            ])
         ;
     }
 

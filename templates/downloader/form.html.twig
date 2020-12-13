@@ -1,3 +1,18 @@
 {% block form %}
-    {{ form(form) }}
+{{ form_start(form) }}
+
+    <div class="row mt-3">
+        <div class="col">
+            {{ form_label(form.input, 'Paste the YouTube url') }}
+            {{ form_row(form.input, { 'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.submit, { 'attr': {'class': 'btn btn-lg btn-primary mt-3 mb-3'}, 'label': 'Show me the links!'}) }}
+        </div>
+    </div>
+
+{{ form_end(form) }}
 {% endblock %}

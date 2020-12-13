@@ -32,12 +32,14 @@ class DownloaderController extends AbstractController
         } else {
             $links = '';
             $videoId = '';
+            $videoLink = '';
         }
 
         return $this->render('downloader/index.html.twig', [
             'form' => $form->createView(),
             'links' => $links,
             'videoId' => $videoId,
+            'videoLink' => $videoLink,
         ]);
     }
 }
