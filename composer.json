@@ -14,7 +14,6 @@
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
         "friendsofphp/php-cs-fixer": "^2.16",
-        "heroku/heroku-buildpack-php": "^187.0",
         "sensio/framework-extra-bundle": "^5.6",
         "symfony/console": "5.2.*",
         "symfony/debug-bundle": "5.2.*",
@@ -76,5 +75,8 @@
             "allow-contrib": false,
             "require": "5.2.*"
         }
+    },
+    "require-dev": {
+        "heroku/heroku-buildpack-php": "^187.0"
     }
 }
