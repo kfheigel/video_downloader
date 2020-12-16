@@ -12,17 +12,17 @@ import './styles/app.css';
 import './bootstrap';
 import $ from 'jquery';
 
-$(document).ready(function(){
-    $(function(){
-      $("video_download_submit").on("click", function(e){
-        e.preventDefault();
+// $(document).ready(function(){
+//     $(function(){
+//       $("video_download_submit").on("click", function(e){
+//         e.preventDefault();
         
-        $.ajax({
-          // change complete for success
-          complete: function(){
-            $("video_download_submit").classList.add("btn-block");;
-          }
-        });
-      });
-    });
-  });
+//         $.ajax({
+//           // change complete for success
+//           complete: function(){
+//             $("video_download_submit").classList.add("btn-block");;
+//           }
+//         });
+//       });
+//     });
+//   });
