@@ -19,7 +19,7 @@ class Downloader
 
     public function videoId($link)
     {
-        preg_match('/[a-zA-Z0-9]*$/', $link, $match);
+        preg_match('/[a-zA-Z0-9\-]*$/', $link, $match);
 
         return $match[0];
     }
