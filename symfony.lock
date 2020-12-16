@@ -99,9 +99,6 @@
             ".php_cs.dist"
         ]
     },
-    "heroku/heroku-buildpack-php": {
-        "version": "v187"
-    },
     "laminas/laminas-code": {
         "version": "3.5.1"
     },
