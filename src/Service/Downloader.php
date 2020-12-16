@@ -20,8 +20,6 @@ class Downloader
                 unset($results[$key]);
             }
         }
-        dump($results);
-
         return $results;
     }
 
