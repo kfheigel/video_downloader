@@ -29,10 +29,12 @@ class DownloaderController extends AbstractController
             $logger->info('Form is submitted');
             $links = $youtubeDownload->downloadVideo($videoLink);
             $videoId = $youtubeDownload->videoId($videoLink);
+            $videoTitle = $youtubeDownload->videoTitle($videoLink);
         } else {
             $links = '';
             $videoId = '';
             $videoLink = '';
+            $videoTitle = '';
         }
 
         return $this->render('downloader/index.html.twig', [
@@ -40,6 +42,7 @@ class DownloaderController extends AbstractController
             'links' => $links,
             'videoId' => $videoId,
             'videoLink' => $videoLink,
+            'videoTitle' => $videoTitle,
         ]);
     }
 }
