@@ -12,13 +12,51 @@ import './styles/app.css';
 import './bootstrap';
 import $ from 'jquery';
 
-document.getElementById("video_download_submit").onclick = clearText();
+document.getElementById("video_download_submit").onclick = clearInputText();
 
-function clearText(){
-  var search = document.getElementById('video_download_input');
-  if (search.defaultValue==search.value){
-    search.value = "";
+function clearInputText(){
+  var input = document.getElementById('video_download_input');
+
+  if (input.defaultValue==input.value){
+    input.value = "";
   }
-  
 }
+
+// localStorage.clicks = '0';
+// document.getElementById("video_download_submit").onclick = changeButtonText();
+
+// function changeButtonText(){
+//   var submit = document.getElementById('video_download_submit');
+//   var count = parseInt(localStorage.getItem('clicks'));
+
+//   alert(count);
+//   switch (count) {
+//     case 1:
+//       submit.innerText = "Add another one!";
+//       localStorage.setItem("clicks", ++count);
+//       break;
+//     case 2:
+//       submit.innerText = "And another one!";
+//       localStorage.setItem("clicks", ++count);
+//       break;
+//     case 3:
+//       submit.innerText = "Aaand another one!";
+//       localStorage.setItem("clicks", ++count);
+//       break;
+//     case 4:
+//       submit.innerText = "Moooreee";
+//       localStorage.setItem("clicks", ++count);
+//       break;
+//     default:
+//       submit.innerText = "Show me the links!";
+//       localStorage.clear();
+//   }
+// }
+
+
+// document.onload = restoreButtonText();
+
+// function restoreButtonText(){
+//   document.getElementById('video_download_submit').innerText = 'Show me the links!';
+// }
 

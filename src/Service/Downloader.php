@@ -36,7 +36,7 @@ class Downloader
     public function videoTitle($link)
     {
         $videoTitle = explode('</title>', explode('<title>', file_get_contents($link))[1])[0];
-        return str_replace("amp;","",$videoTitle);
+        return substr(str_replace("amp;","",$videoTitle), 0, -10);
     }
 
 }
