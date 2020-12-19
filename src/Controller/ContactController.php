@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Psr\Log\LoggerInterface;
 use App\Form\ContactFormType;
-use Symfony\Component\Mime\Email;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,17 +30,23 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            $email = (new Email())
+            $email = (new TemplatedEmail())
                 ->from($data['email'])
                 ->to($serviceOwnerEmail)
-                ->subject('Heivice - formularz kontaktowy')
-                ->text($data['email']. ' \n' . $data['text']);
+                ->subject('Heivice - ' . $data['subject'])
+                ->htmlTemplate('mail/contactMail.html.twig')
+                ->context([
+                    'sender_email' => $data['email'],
+                    'subject' => $data['subject'],
+                    'text' => $data['text']
+                ]);
 
-            $mailer->send($email);
-            dump($data['email']);
-            dump($data['text']);
+            try {
+                $mailer->send($email);
+            } catch (TransportExceptionInterface $e) {
+                return $this->render('error/errorMail.html.twig');
+            }
         }
-
 
         return $this->render('contact/index.html.twig', [
             'form' => $form->createView(),

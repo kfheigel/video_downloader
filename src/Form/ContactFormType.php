@@ -5,6 +5,7 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -18,7 +19,14 @@ class ContactFormType extends AbstractType
                 'label' => false,
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'name@example.com'
+                    'placeholder' => 'Enter your email adress like this one: name@example.com'
+                ],
+            ])
+            ->add('subject', TextType::class, [
+                'label' => false,
+                'required' => true,
+                'attr' => [
+                    'placeholder' => 'Like, what would you like to see in the next update!'
                 ],
             ])
             ->add('text', TextareaType::class, [

@@ -19,11 +19,16 @@
                             </div>
                             <div class="row mt-3">
                                 <div class="col">
+                                    {{ form_label(form.subject, 'Write the email subject') }}
+                                    {{ form_row(form.subject, { 'attr': {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
                                     {{ form_label(form.text, 'What is on your mind?') }}
                                     {{ form_row(form.text, { 'attr': {'class': 'form-control'}}) }}
                                 </div>
                             </div>
-
                             <div class="row mt-2">
                                 <div class="col">
                                     {{ form_row(form.submit, { 'attr': {'class': 'btn btn-lg btn-primary mt-3 mb-3'}, 'label': 'Send!'}) }}
