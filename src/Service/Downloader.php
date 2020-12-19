@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use YouTube\YouTubeDownloader;
+use Athlon\YouTubeDownloader;
 
 class Downloader
 {

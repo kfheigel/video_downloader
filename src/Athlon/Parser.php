@@ -1,6 +1,6 @@
 <?php
 
-namespace YouTube;
+namespace Athlon;
 
 // TODO: rename FormatParser or ITagParser
 class Parser
