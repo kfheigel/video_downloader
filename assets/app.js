@@ -13,15 +13,15 @@ import './bootstrap';
 import $ from 'jquery';
 
 var contactSubmit = document.getElementById('contact_form_submit');
-var contactInputs = document.getElementsByClassName('form-control')
+var contactInputs = document.getElementsByClassName('form-control');
 
 contactSubmit.onclick = clearContactInputText();
 
 function clearContactInputText(){
   for (i = 0; i < contactInputs.length; i++) {
-    if (contactInputs[i].defaultValue==contactInputs[i].value){
+    if (contactInputs[i].defaultValue == contactInputs[i].value){
       contactInputs.value = "";
-    } 
+    }
   }
 }
 
@@ -34,13 +34,13 @@ function clearDownloaderInputText(){
   var downloaderInput = document.getElementById('video_download_input');
   if (downloaderInput.defaultValue==downloaderInput.value){
     downloaderInput.value = "";
-  }
+  };
 }
 
 function changeButtonText(){
   if (localStorage.getItem("clicks") === null) {
     localStorage.clicks = '0';
-  }
+  };
   var count = parseInt(localStorage.getItem('clicks'));
 
   switch (count) {
