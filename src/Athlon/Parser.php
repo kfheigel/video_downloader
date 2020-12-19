@@ -1,6 +1,6 @@
 <?php
 
-namespace Athlon;
+namespace App\Athlon;
 
 // TODO: rename FormatParser or ITagParser
 class Parser

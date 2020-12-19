@@ -1,6 +1,6 @@
 <?php
 
-namespace Athlon;
+namespace App\Athlon;
 
 class Browser
 {

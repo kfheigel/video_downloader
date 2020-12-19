@@ -1,6 +1,6 @@
 <?php
 
-namespace Athlon;
+namespace App\Athlon;
 
 // YouTube is capitalized twice because that's how youtube itself does it:
 // https://developers.google.com/youtube/v3/code_samples/php
