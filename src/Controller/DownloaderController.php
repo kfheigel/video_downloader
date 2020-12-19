@@ -13,6 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class DownloaderController extends AbstractController
 {
     /**
+     * @param Request $request
+     * @param LoggerInterface $logger
+     * @param Downloader $youtubeDownload
+     * @return Response
      * @Route("/downloader", name="downloader")
      */
     public function index(Request $request, LoggerInterface $logger, Downloader $youtubeDownload): Response
