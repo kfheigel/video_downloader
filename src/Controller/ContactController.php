@@ -43,7 +43,15 @@ class ContactController extends AbstractController
 
             try {
                 $mailer->send($email);
+                $this->addFlash(
+                    'success',
+                    "Your email is on it's way to me!"
+                );
             } catch (TransportExceptionInterface $e) {
+                $this->addFlash(
+                    'danger',
+                    'Ooops! Something went wrong! Try again (a little bit) later!'
+                );
                 return $this->render('error/errorMail.html.twig');
             }
         }

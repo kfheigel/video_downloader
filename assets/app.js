@@ -13,15 +13,13 @@ import './bootstrap';
 import $ from 'jquery';
 
 var contactSubmit = document.getElementById('contact_form_submit');
-var contactInputs = document.getElementsByClassName('form-control');
 
 contactSubmit.onclick = clearContactInputText();
 
 function clearContactInputText(){
-  for (i = 0; i < contactInputs.length; i++) {
-    if (contactInputs[i].defaultValue == contactInputs[i].value){
-      contactInputs.value = "";
-    }
+  var contactInputs = document.getElementsByClassName('form-control');
+  for (var i = 0; i < contactInputs.length; i++) {
+    contactInputs[i].value = "";
   }
 }
 
