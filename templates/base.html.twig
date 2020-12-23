@@ -15,8 +15,10 @@
     </head>
     <body>
         {% include('navbar.html.twig') %}
-        {% block body %}{% endblock %}
-        {% include('footer.html.twig') %}
+        <div class="flex-wrapper">
+            {% block body %}{% endblock %}
+            {% include('footer.html.twig') %}
+        </div>
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}

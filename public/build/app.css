@@ -1,6 +1,13 @@
+.flex-wrapper {
+    display: flex;
+    min-height: 81vh;
+    flex-direction: column;
+    justify-content: space-between
+  }
+
 .footer { 
-    position: fixed; 
-    bottom: 0; 
+    /* position: fixed; 
+    bottom: 0;  */
     width: 100%; 
     color: azure;
 }
@@ -13,4 +20,13 @@
     padding: 35px;
     border-radius: 100px 50px;
     box-shadow: 0 0 20px grey;
+}
+
+.small-result-border{
+    border: 2px solid grey;
+    padding: 20px;
+    border-radius: 50px 25px;
+}
+.card {
+    display:inline-block;
 }
