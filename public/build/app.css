@@ -1,13 +1,22 @@
-.flex-wrapper {
+/* .flex-wrapper {
     display: flex;
-    min-height: 81vh;
+    min-height: 82vh;
     flex-direction: column;
     justify-content: space-between
+  } */
+
+.page-container {
+    position: relative;
+    min-height: 87.7vh;
+  }
+  
+.content-wrap {
+    padding-bottom: 8rem;    /* Footer height */
   }
 
 .footer { 
-    /* position: fixed; 
-    bottom: 0;  */
+    position: absolute; 
+    bottom: 0; 
     width: 100%; 
     color: azure;
 }
