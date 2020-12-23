@@ -11,6 +11,9 @@
             <a class="nav-link {% if app.request.get('_route') == 'downloader' %} active {% endif %}" href="{{ path('downloader') }}">Downloader</a>
             <a class="nav-link {% if app.request.get('_route') == 'about' %} active {% endif %}" href="{{ path('about') }}">About</a>
             <a class="nav-link {% if app.request.get('_route') == 'contact' %} active {% endif %}" href="{{ path('contact') }}">Contact</a>
+            <a class="nav-link {% if app.request.get('_route') == 'login' %} active {% endif %}" href="{{ path('login') }}">Login</a>
+            {# <a class="nav-link {% if app.request.get('_route') == 'register' %} active {% endif %}" href="{{ path('register') }}">Register</a> #}
+            <a class="nav-link {% if app.request.get('_route') == 'logout' %} active {% endif %}" href="{{ path('logout') }}">Logout</a>
             </div>
         </div>
     </div>
