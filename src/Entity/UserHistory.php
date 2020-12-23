@@ -33,6 +33,16 @@ class UserHistory
      */
     private $user_id;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $videoId;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $videoTitle;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +80,30 @@ class UserHistory
     public function setUserId(?User $user_id): self
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getVideoId(): ?string
+    {
+        return $this->videoId;
+    }
+
+    public function setVideoId(?string $videoId): self
+    {
+        $this->videoId = $videoId;
+
+        return $this;
+    }
+
+    public function getVideoTitle(): ?string
+    {
+        return $this->videoTitle;
+    }
+
+    public function setVideoTitle(?string $videoTitle): self
+    {
+        $this->videoTitle = $videoTitle;
 
         return $this;
     }

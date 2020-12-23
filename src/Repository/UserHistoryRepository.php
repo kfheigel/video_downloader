@@ -19,22 +19,19 @@ class UserHistoryRepository extends ServiceEntityRepository
         parent::__construct($registry, UserHistory::class);
     }
 
-    // /**
-    //  * @return UserHistory[] Returns an array of UserHistory objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return UserHistory[] Returns an array of UserHistory objects
+     */
+    public function findUserDownloadHistory($userId)
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('youtube')
+            ->orderBy('youtube.id', 'DESC')
+            ->setMaxResults(5)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?UserHistory
