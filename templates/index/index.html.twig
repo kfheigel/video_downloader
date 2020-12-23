@@ -8,7 +8,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-9 mx-auto">
-                    <h2 class="mb-5"> 
+                {% for label, messages in app.flashes %}
+                            {% for message in messages %}
+                                <div class="text-{{ label }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    <h2 class="mb-5 mt-3"> 
                         <div>Welcome to</div></br>
                             <div class="mt-2 mb-2 h1" >
                                 <p><img rel="icon" type="image/x-icon" height="40" alt="Heivice icon" src="{{ asset('favicon/favicon.ico') }}" />eivice</p>

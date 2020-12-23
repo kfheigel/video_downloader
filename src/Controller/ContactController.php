@@ -22,6 +22,10 @@ class ContactController extends AbstractController
      */
     public function index(MailerInterface $mailer, Request $request, LoggerInterface $logger, $serviceOwnerEmail): Response
     {
+        if(!$this->getUser()==null && $this->getUser()->isVerified()==0){
+            return $this->redirectToRoute('index'); 
+        }
+        
         $logger->info('ContactController started working');
 
         $form = $this->createForm(ContactFormType::class);

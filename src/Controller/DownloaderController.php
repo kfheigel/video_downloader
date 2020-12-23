@@ -21,6 +21,9 @@ class DownloaderController extends AbstractController
      */
     public function index(Request $request, LoggerInterface $logger, Downloader $youtubeDownload): Response
     {
+        if(!$this->getUser()==null && $this->getUser()->isVerified()==0){
+            return $this->redirectToRoute('index');
+        }
         $logger->info('IndexController started working');
 
         $form = $this->createForm(VideoDownloadType::class);
