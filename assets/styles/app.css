@@ -1,23 +1,32 @@
 @import "~bootstrap";
 
+:root {
+    --grey: grey;
+    --white: azure;
+  }
+
 .footer { 
+    bottom: 0;
     width: 100%; 
-    color: azure;
+    color: var(--white);
 }
     
 .link{
-    color: azure;
+    color: var(--white);
 }
 
 .result-border{
     padding: 35px;
     border-radius: 100px 50px;
-    box-shadow: 0 0 20px grey;
+    box-shadow: 0 0 20px var(--grey);
 }
 
 .card {
     display:inline-block;
-    border: 2px solid grey;
+    border: 2px solid var(--grey);
     padding: 20px;
     border-radius: 50px 25px;
+}
+.height{
+    min-height: 600px;
 }
