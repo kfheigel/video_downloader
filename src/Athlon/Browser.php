@@ -62,9 +62,9 @@ class Browser
         $cache_path = sprintf('%s/%s', $this->storage_dir, $this->getCacheKey($url));
 
         if (file_exists($cache_path)) {
-
             // unserialize could fail on empty file
             $str = file_get_contents($cache_path);
+
             return unserialize($str);
         }
 
@@ -73,6 +73,7 @@ class Browser
         // must not fail
         if ($response) {
             file_put_contents($cache_path, serialize($response));
+
             return $response;
         }
 
@@ -96,7 +97,6 @@ class Browser
     // useful for checking for: 429 Too Many Requests
     public function getStatus($url)
     {
-
     }
 
     protected function getCacheKey($url)

@@ -15,11 +15,11 @@ class IndexController extends AbstractController
      */
     public function index(): Response
     {
-        if(!$this->getUser()==null && $this->getUser()->isVerified()==0){
+        if (null == !$this->getUser() && 0 == $this->getUser()->isVerified()) {
             $this->addFlash(
                 'danger',
                 "Ooops! You have to verify your e-mail adress to access service content! Link is in the mail! Check Spam if you can't find it, or contact me through the contact form!"
-            ); 
+            );
         }
 
         return $this->render('index/index.html.twig', [

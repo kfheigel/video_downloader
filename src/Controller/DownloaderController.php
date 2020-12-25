@@ -3,26 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\UserHistory;
+use App\Form\VideoDownloadType;
 use App\Service\Downloader;
 use Psr\Log\LoggerInterface;
-use App\Form\VideoDownloadType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DownloaderController extends AbstractController
 {
     /**
-     * @param Request $request
-     * @param LoggerInterface $logger
-     * @param Downloader $youtubeDownload
-     * @return Response
      * @Route("/downloader", name="downloader")
      */
     public function index(Request $request, LoggerInterface $logger, Downloader $youtubeDownload): Response
     {
-        if(!$this->getUser()==null && $this->getUser()->isVerified()==0){
+        if (null == !$this->getUser() && 0 == $this->getUser()->isVerified()) {
             return $this->redirectToRoute('index');
         }
 
@@ -55,19 +51,19 @@ class DownloaderController extends AbstractController
             $videoTitle = '';
         }
 
-        if($this->getUser()){
+        if ($this->getUser()) {
             $history = $this->getDoctrine()->getRepository(UserHistory::class)->findUserDownloadHistory($this->getUser()->getId());
-        }else{
-            $history=[];
+        } else {
+            $history = [];
         }
-        
-                return $this->render('downloader/index.html.twig', [
+
+        return $this->render('downloader/index.html.twig', [
             'form' => $form->createView(),
             'links' => $links,
             'videoId' => $videoId,
             'videoLink' => $videoLink,
             'videoTitle' => $videoTitle,
-            'history' => $history
+            'history' => $history,
         ]);
     }
 }

@@ -7,7 +7,7 @@ class YoutubeStreamer
     // 4096
     protected $buffer_size = 256 * 1024;
 
-    protected $headers = array();
+    protected $headers = [];
     protected $headers_sent = false;
 
     protected $debug = false;
@@ -28,19 +28,17 @@ class YoutubeStreamer
             $status_code = $matches[1];
 
             // if Forbidden or Not Found -> those are "valid" statuses too
-            if ($status_code == 200 || $status_code == 206 || $status_code == 403 || $status_code == 404) {
+            if (200 == $status_code || 206 == $status_code || 403 == $status_code || 404 == $status_code) {
                 $this->headers_sent = true;
                 $this->sendHeader(rtrim($data));
             }
-
         } else {
-
             // only headers we wish to forward back to the client
-            $forward = array('content-type', 'content-length', 'accept-ranges', 'content-range');
+            $forward = ['content-type', 'content-length', 'accept-ranges', 'content-range'];
 
             $parts = explode(':', $data, 2);
 
-            if ($this->headers_sent && count($parts) == 2 && in_array(trim(strtolower($parts[0])), $forward)) {
+            if ($this->headers_sent && 2 == count($parts) && in_array(trim(strtolower($parts[0])), $forward)) {
                 $this->sendHeader(rtrim($data));
             }
         }
@@ -62,11 +60,11 @@ class YoutubeStreamer
     {
         $ch = curl_init();
 
-        $headers = array();
+        $headers = [];
         $headers[] = 'User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:49.0) Gecko/20100101 Firefox/49.0';
 
         if (isset($_SERVER['HTTP_RANGE'])) {
-            $headers[] = 'Range: ' . $_SERVER['HTTP_RANGE'];
+            $headers[] = 'Range: '.$_SERVER['HTTP_RANGE'];
         }
 
         // otherwise you get weird "OpenSSL SSL_read: No error"
@@ -96,7 +94,7 @@ class YoutubeStreamer
         $ret = curl_exec($ch);
 
         // TODO: $this->logError($ch);
-        $error = ($ret === false) ? sprintf('curl error: %s, num: %s', curl_error($ch), curl_errno($ch)) : null;
+        $error = (false === $ret) ? sprintf('curl error: %s, num: %s', curl_error($ch), curl_errno($ch)) : null;
 
         curl_close($ch);
 

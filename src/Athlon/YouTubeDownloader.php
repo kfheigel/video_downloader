@@ -11,7 +11,7 @@ class YouTubeDownloader
     /** @var string|null */
     protected $error;
 
-    function __construct()
+    public function __construct()
     {
         $this->client = new Browser();
     }
@@ -28,10 +28,11 @@ class YouTubeDownloader
 
     /**
      * Look for a player script URL. E.g:
-     * <script src="//s.ytimg.com/yts/jsbin/player-fr_FR-vflHVjlC5/base.js" name="player/base"></script>
+     * <script src="//s.ytimg.com/yts/jsbin/player-fr_FR-vflHVjlC5/base.js" name="player/base"></script>.
      *
      * @param $video_html
-     * @return null|string
+     *
+     * @return string|null
      */
     public function getPlayerScriptUrl($video_html)
     {
@@ -42,11 +43,11 @@ class YouTubeDownloader
             $player_url = $matches[1];
 
             // relative protocol?
-            if (strpos($player_url, '//') === 0) {
-                $player_url = 'http://' . substr($player_url, 2);
-            } elseif (strpos($player_url, '/') === 0) {
+            if (0 === strpos($player_url, '//')) {
+                $player_url = 'http://'.substr($player_url, 2);
+            } elseif (0 === strpos($player_url, '/')) {
                 // relative path?
-                $player_url = 'http://www.youtube.com' . $player_url;
+                $player_url = 'http://www.youtube.com'.$player_url;
             }
         }
 
@@ -56,6 +57,7 @@ class YouTubeDownloader
     public function getPlayerCode($player_url)
     {
         $contents = $this->client->getCached($player_url);
+
         return $contents;
     }
 
@@ -70,21 +72,20 @@ class YouTubeDownloader
     }
 
     /**
-     * @param array $links
+     * @param array  $links
      * @param string $selector mp4, 360, etc...
+     *
      * @return array
      */
     private function selectFirst($links, $selector)
     {
-        $result = array();
+        $result = [];
         $formats = preg_split('/\s*,\s*/', $selector);
 
         // has to be in this order
         foreach ($formats as $f) {
-
             foreach ($links as $l) {
-
-                if (stripos($l['format'], $f) !== false || $f == 'any') {
+                if (false !== stripos($l['format'], $f) || 'any' == $f) {
                     $result[] = $l;
                 }
             }
@@ -96,19 +97,20 @@ class YouTubeDownloader
     // https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=JnfyjwChuNU&format=json
     public function getVideoInfo($video_id)
     {
-        $response = $this->client->get("https://www.youtube.com/get_video_info?" . http_build_query([
+        $response = $this->client->get('https://www.youtube.com/get_video_info?'.http_build_query([
                 'video_id' => $video_id,
-                'eurl' => 'https://youtube.googleapis.com/v/' . $video_id,
-                'el' => 'detailpage' // or embedded. default: embedded, will fail if video is not embeddable
+                'eurl' => 'https://youtube.googleapis.com/v/'.$video_id,
+                'el' => 'detailpage', // or embedded. default: embedded, will fail if video is not embeddable
             ]));
         if ($response) {
-            $arr = array();
+            $arr = [];
 
             parse_str($response, $arr);
 
             if (array_key_exists('player_response', $arr)) {
                 $arr['player_response'] = json_decode($arr['player_response'], true);
             }
+
             return $arr;
         }
 
@@ -130,6 +132,7 @@ class YouTubeDownloader
     public function getPageHtml($url)
     {
         $video_id = $this->extractVideoId($url);
+
         return $this->client->get("https://www.youtube.com/watch?v={$video_id}");
     }
 
@@ -138,6 +141,7 @@ class YouTubeDownloader
         if (preg_match('/player_response":"(.*?)\"}};/', $page_html, $matches)) {
             $match = stripslashes($matches[1]);
             $ret = json_decode($match, true);
+
             return $ret;
         }
 
@@ -149,7 +153,6 @@ class YouTubeDownloader
         $parser = new Parser();
 
         try {
-
             $formats = Utils::arrayGet($player_response, 'streamingData.formats', []);
 
             // video only or audio only streams
@@ -158,22 +161,20 @@ class YouTubeDownloader
             $formats_combined = array_merge($formats, $adaptiveFormats);
 
             // final response
-            $return = array();
+            $return = [];
 
             foreach ($formats_combined as $item) {
-
                 // sometimes as appear as "cipher" or "signatureCipher"
                 $cipher = Utils::arrayGet($item, 'cipher', Utils::arrayGet($item, 'signatureCipher', ''));
                 $itag = $item['itag'];
 
                 // some videos do not need to be decrypted!
                 if (isset($item['url'])) {
-
-                    $return[] = array(
+                    $return[] = [
                         'url' => $item['url'],
                         'itag' => $itag,
-                        'format' => $parser->parseItagInfo($itag)
-                    );
+                        'format' => $parser->parseItagInfo($itag),
+                    ];
 
                     continue;
                 }
@@ -187,15 +188,14 @@ class YouTubeDownloader
                 $decoded_signature = (new SignatureDecoder())->decode($signature, $js_code);
 
                 // redirector.googlevideo.com
-                $return[] = array(
-                    'url' => $url . '&' . $sp . '=' . $decoded_signature,
+                $return[] = [
+                    'url' => $url.'&'.$sp.'='.$decoded_signature,
                     'itag' => $itag,
-                    'format' => $parser->parseItagInfo($itag)
-                );
+                    'format' => $parser->parseItagInfo($itag),
+                ];
             }
 
             return $return;
-
         } catch (\Exception $exception) {
             // do nothing
         } catch (\Throwable $throwable) {
@@ -211,13 +211,12 @@ class YouTubeDownloader
 
         $page_html = $this->getPageHtml($video_id);
 
-        if (strpos($page_html, 'We have been receiving a large volume of requests') !== false ||
-            strpos($page_html, 'systems have detected unusual traffic') !== false ||
-            strpos($page_html, '/recaptcha/') !== false) {
-
+        if (false !== strpos($page_html, 'We have been receiving a large volume of requests') ||
+            false !== strpos($page_html, 'systems have detected unusual traffic') ||
+            false !== strpos($page_html, '/recaptcha/')) {
             $this->error = 'HTTP 429: Too many requests.';
 
-            return array();
+            return [];
         }
 
         // get JSON encoded parameters that appear on video pages
@@ -233,7 +232,7 @@ class YouTubeDownloader
         $result = $this->parsePlayerResponse($json, $js);
         // if error happens
         if (!is_array($result)) {
-            return array();
+            return [];
         }
 
         // do we want all links or just select few?

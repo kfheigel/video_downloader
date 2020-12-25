@@ -7,15 +7,14 @@ class Parser
 {
     public function downloadFormats()
     {
-        $data = file_get_contents("https://raw.githubusercontent.com/ytdl-org/youtube-dl/master/youtube_dl/extractor/youtube.py");
+        $data = file_get_contents('https://raw.githubusercontent.com/ytdl-org/youtube-dl/master/youtube_dl/extractor/youtube.py');
 
         // https://github.com/ytdl-org/youtube-dl/blob/master/youtube_dl/extractor/youtube.py#L429
         if (preg_match('/_formats = ({(.*?)})\s*_/s', $data, $matches)) {
-
             $json = $matches[1];
 
             // only "double" quotes are valid in JSON
-            $json = str_replace("'", "\"", $json);
+            $json = str_replace("'", '"', $json);
 
             // remove comments
             $json = preg_replace('/\s*#(.*)/', '', $json);
@@ -26,7 +25,7 @@ class Parser
             return json_decode($json, true);
         }
 
-        return array();
+        return [];
     }
 
     public function transformFormats($formats)
@@ -34,7 +33,6 @@ class Parser
         $results = [];
 
         foreach ($formats as $itag => $format) {
-
             $temp = [];
 
             if (!empty($format['ext'])) {
@@ -46,10 +44,10 @@ class Parser
             }
 
             if (!empty($format['height'])) {
-                $temp[] = $format['height'] . 'p';
+                $temp[] = $format['height'].'p';
             }
 
-            if (!empty($format['acodec']) && $format['acodec'] !== 'none') {
+            if (!empty($format['acodec']) && 'none' !== $format['acodec']) {
                 $temp[] = 'audio';
             }
 
@@ -69,7 +67,7 @@ class Parser
     }
 
     // itag info does not change frequently, that is why we cache it here as a plain static array
-    private $itag_detailed = array(
+    private $itag_detailed = [
         5 => 'flv, video, 240p, audio',
         6 => 'flv, video, 270p, audio',
         13 => '3gp, video, audio',
@@ -151,5 +149,5 @@ class Parser
         395 => 'video',
         396 => 'video',
         397 => 'video',
-    );
+    ];
 }

@@ -32,7 +32,6 @@ class UserHistoryRepository extends ServiceEntityRepository
         ;
     }
 
-
     /*
     public function findOneBySomeField($value): ?UserHistory
     {
