@@ -1,16 +1,7 @@
 @import "~bootstrap";
 
-.page-container {
-    position: relative;
-    min-height: 100vh;
-  }
-  
-.content-wrap {
-    padding-bottom: 8rem;    /* Footer height */
-  }
 
 .footer { 
-    position: absolute; 
     width: 100%; 
     color: azure;
 }
