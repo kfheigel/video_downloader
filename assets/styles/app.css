@@ -1,12 +1,5 @@
 @import "~bootstrap";
 
-/* .flex-wrapper {
-    display: flex;
-    min-height: 82vh;
-    flex-direction: column;
-    justify-content: space-between
-  } */
-
 .page-container {
     position: relative;
     min-height: 87.7vh;
@@ -33,11 +26,9 @@
     box-shadow: 0 0 20px grey;
 }
 
-.small-result-border{
+.card {
+    display:inline-block;
     border: 2px solid grey;
     padding: 20px;
     border-radius: 50px 25px;
-}
-.card {
-    display:inline-block;
 }
