@@ -26,8 +26,20 @@ class Downloader
 
     public function videoId($link)
     {
-        $match = parse_url($link, PHP_URL_PATH);
-        return substr($match, 1);
+        $video_id = explode("?v=", $link);
+        if (empty($video_id[1])){
+            $video_id = explode("/v/", $link); 
+        }
+        if (empty($video_id[1])){
+            $video_id = explode("be/", $link); 
+        }
+        if(strpos($video_id[1], "&"))
+        {
+            $video_id = explode("&", $video_id[1]);
+        }elseif (strpos($video_id[1], "?")) {
+            $video_id = explode("?", $video_id[1]);
+        }
+        return($video_id[0]);
     }
 
     public function videoTitle($link)
