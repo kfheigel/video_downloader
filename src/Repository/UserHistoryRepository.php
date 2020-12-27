@@ -28,7 +28,7 @@ class UserHistoryRepository extends ServiceEntityRepository
             ->select('yt.youtubeLinks', 'yt.videoId', 'yt.videoTitle')
             ->distinct(true)
             ->orderBy('yt.id', 'DESC')
-            ->setMaxResults(3)
+            ->setMaxResults(4)
             ->getQuery()
             ->getResult()
         ;

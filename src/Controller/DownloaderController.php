@@ -17,11 +17,8 @@ class DownloaderController extends AbstractController
      * @Route("/downloader", name="downloader")
      */
     public function index(Request $request, LoggerInterface $logger, Downloader $youtubeDownload): Response
-    {
-        if (null == !$this->getUser() && 0 == $this->getUser()->isVerified()) {
-            return $this->redirectToRoute('index');
-        }
-
+    {   
+        
         $logger->info('IndexController started working');
         $em = $this->getDoctrine()->getManager();
 
@@ -37,13 +34,20 @@ class DownloaderController extends AbstractController
             $videoId = $youtubeDownload->videoId($videoLink);
             $videoTitle = $youtubeDownload->videoTitle($videoLink);
 
-            $userHistory = new UserHistory();
-            $userHistory->setUserId($this->getUser());
-            $userHistory->setYoutubeLinks($videoLink);
-            $userHistory->setVideoId($videoId);
-            $userHistory->setVideoTitle($videoTitle);
-            $em->persist($userHistory);
-            $em->flush();
+            if(null !== $this->getUser()){
+                if (0 == $this->getUser()->isVerified()) {
+                    return $this->redirectToRoute('index');
+                }else{
+                    $userHistory = new UserHistory();
+                    $userHistory->setUserId($this->getUser());
+                    $userHistory->setYoutubeLinks($videoLink);
+                    $userHistory->setVideoId($videoId);
+                    $userHistory->setVideoTitle($videoTitle);
+                    $em->persist($userHistory);
+                    $em->flush();
+                }
+            }
+            
         } else {
             $links = '';
             $videoId = '';
