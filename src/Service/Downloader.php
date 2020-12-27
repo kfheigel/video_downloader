@@ -26,14 +26,8 @@ class Downloader
 
     public function videoId($link)
     {
-        preg_match('/\=[\S]*$/', $link, $match);
-        if (($index = strpos($match[0], '&')) !== false) {
-            return substr($match[0], 1, $index - 1);
-        } else {
-            return substr($match[0], 1);
-        }
-
-        return substr($match[0], 1);
+        $match = parse_url($link, PHP_URL_PATH);
+        return substr($match, 1);
     }
 
     public function videoTitle($link)
