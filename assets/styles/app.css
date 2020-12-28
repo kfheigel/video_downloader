@@ -5,14 +5,15 @@
     --white: azure;
   }
 
-
 html {
     position: relative;
     min-height: 100%;
 }
+
 body {
     margin: 0 0 130px;
 }
+
 .footer { 
     position:absolute;
     left: 0;

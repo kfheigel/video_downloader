@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Password Reset Email Sent{% endblock %}
+
+{% block body %}
+    
+<div class="masthead text-black text-center mt-5 height">
+    <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <h4 class="mb-5 mt-3"> 
+                        <div class="mt-2 mb-2 h1" >
+                            <p><img rel="icon" type="image/x-icon" height="40" alt="Heivice icon" src="{{ asset('favicon/favicon.ico') }}" />eivice</p>
+                        </div></br>
+                        <p>An email has been sent that contains a link that you can click to reset your password. This link will expire in {{ tokenLifetime|date('g') }} hour(s).</p>
+                        <p>If you don't receive an email please check your spam folder or <a href="{{ path('app_forgot_password_request') }}">try again</a>.</p> 
+                   </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <h4 class="mb-5"> 
+                        <div>For support, please contact me via <a href="{{ path('contact') }}">contact form</a></div>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
