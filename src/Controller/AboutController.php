@@ -13,7 +13,12 @@ class AboutController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('about/index.html.twig', [
-        ]);
+        if(!$this->getUser()==null && $this->getUser()->isVerified()==0){
+            return $this->redirectToRoute('index'); 
+        }else{
+            return $this->render('about/index.html.twig', [
+                ]);
+        }
+        
     }
 }

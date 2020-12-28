@@ -22,6 +22,10 @@ class ContactController extends AbstractController
      */
     public function index(MailerInterface $mailer, Request $request, LoggerInterface $logger, $serviceOwnerEmail): Response
     {
+        if(!$this->getUser()==null && $this->getUser()->isVerified()==0){
+            return $this->redirectToRoute('index'); 
+        }
+        
         $logger->info('ContactController started working');
 
         $form = $this->createForm(ContactFormType::class);
@@ -43,7 +47,15 @@ class ContactController extends AbstractController
 
             try {
                 $mailer->send($email);
+                $this->addFlash(
+                    'success',
+                    "Your email is on it's way to me!"
+                );
             } catch (TransportExceptionInterface $e) {
+                $this->addFlash(
+                    'danger',
+                    'Ooops! Something went wrong! Try again (a little bit) later!'
+                );
                 return $this->render('error/errorMail.html.twig');
             }
         }
