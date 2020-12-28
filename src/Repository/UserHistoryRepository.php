@@ -24,14 +24,15 @@ class UserHistoryRepository extends ServiceEntityRepository
      */
     public function findUserDownloadHistory($userId)
     {
-        return $this->createQueryBuilder('youtube')
-            ->orderBy('youtube.id', 'DESC')
-            ->setMaxResults(6)
+        return $this->createQueryBuilder('yt')
+            ->select('yt.youtubeLinks', 'yt.videoId', 'yt.videoTitle')
+            ->distinct(true)
+            ->orderBy('yt.id', 'DESC')
+            ->setMaxResults(4)
             ->getQuery()
             ->getResult()
         ;
     }
-
 
     /*
     public function findOneBySomeField($value): ?UserHistory

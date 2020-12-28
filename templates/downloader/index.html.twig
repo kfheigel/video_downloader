@@ -4,7 +4,7 @@
 
 {% block body %}
 
-  <header class="masthead text-black text-center mt-5">
+  <div class="masthead text-black text-center mt-5 height">
     <div class="overlay"></div>
       <div class="container">
         <div class="row">
@@ -59,18 +59,26 @@
               </div>
             </h2>
               <div class="card-columns">
+              {% set continue = false %}
               {% for link in history %}
-              <div class="card w-100 mb-2 small-result-border">
-                <div class="card-body">
-                  <h5 class="card-title">{{ link.videoTitle }}</h5>
-                  <a href="https://www.youtube.com/watch?v={{ link.videoId }}" target="_blank"><img class="mt-3" height="100px" src="https://img.youtube.com/vi/{{ link.videoId }}/mqdefault.jpg"></a></br>                  
-                </div>
-              </div>
+                {% if link.videoId == videoId %}
+                  {% set continue = true %}
+                {% else %}
+                  <div class="card w-100 mb-2">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ link.videoTitle }}</h5>
+                      <a href="https://www.youtube.com/watch?v={{ link.videoId }}" target="_blank"><img class="mt-3" height="100px" src="https://img.youtube.com/vi/{{ link.videoId }}/mqdefault.jpg"></a></br>                  
+                    </div>
+                  </div>
+                  {% if continue %}
+                    {% set continue = false %}
+                  {% endif %}
+                {% endif %}
               {% endfor %}
               </div class="mb-5">
           </div>
         </div>
       </div>
     </div>
-  </header>
+  </div>
 {% endblock %}
