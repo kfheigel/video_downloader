@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-use YouTube\YouTubeDownloader;
+use App\Athlon\YouTubeDownloader;
 
 class Downloader
 {
@@ -31,6 +31,8 @@ class Downloader
         }else{
             return substr($match[0], 1);
         }
+        return substr($match[0], 1);
+
     }
 
     public function videoTitle($link)

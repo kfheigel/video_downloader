@@ -12,23 +12,35 @@ import './styles/app.css';
 import './bootstrap';
 import $ from 'jquery';
 
+var contactSubmit = document.getElementById('contact_form_submit');
+var contactInputs = document.getElementsByClassName('form-control');
 
-var submit = document.getElementById('video_download_submit');
-var input = document.getElementById('video_download_input');
+contactSubmit.onclick = clearContactInputText();
 
-submit.onclick = clearInputText();
-submit.onclick = changeButtonText();
-
-function clearInputText(){
-  if (input.defaultValue==input.value){
-    input.value = "";
+function clearContactInputText(){
+  for (i = 0; i < contactInputs.length; i++) {
+    if (contactInputs[i].defaultValue == contactInputs[i].value){
+      contactInputs.value = "";
+    }
   }
+}
+
+var downloaderSubmit = document.getElementById('video_download_submit');
+
+downloaderSubmit.onclick = clearDownloaderInputText();
+downloaderSubmit.onclick = changeButtonText();
+
+function clearDownloaderInputText(){
+  var downloaderInput = document.getElementById('video_download_input');
+  if (downloaderInput.defaultValue==downloaderInput.value){
+    downloaderInput.value = "";
+  };
 }
 
 function changeButtonText(){
   if (localStorage.getItem("clicks") === null) {
     localStorage.clicks = '0';
-  }
+  };
   var count = parseInt(localStorage.getItem('clicks'));
 
   switch (count) {
@@ -70,10 +82,3 @@ function changeButtonText(){
       break;
     }
   }
-
-// document.onload = restoreButtonText();
-
-// function restoreButtonText(){
-//   document.getElementById('video_download_submit').innerText = 'Show me the links!';
-// }
-
