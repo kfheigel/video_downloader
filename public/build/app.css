@@ -9,4 +9,8 @@
     color: azure;
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vYXBwLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTtJQUNJLGVBQWU7SUFDZixTQUFTO0lBQ1QsV0FBVztJQUNYLFlBQVk7QUFDaEI7O0FBRUE7SUFDSSxZQUFZO0FBQ2hCLEMiLCJmaWxlIjoiYXBwLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgXCJ+Ym9vdHN0cmFwXCI7XG5cbi5mb290ZXIgeyBcbiAgICBwb3NpdGlvbjogZml4ZWQ7IFxuICAgIGJvdHRvbTogMDsgXG4gICAgd2lkdGg6IDEwMCU7IFxuICAgIGNvbG9yOiBhenVyZTtcbn1cbiAgICBcbi5saW5re1xuICAgIGNvbG9yOiBhenVyZTtcbn0iXSwic291cmNlUm9vdCI6IiJ9*/
+.result-border{
+    padding: 35px;
+    border-radius: 100px 50px;
+    box-shadow: 0 0 20px grey;
+}

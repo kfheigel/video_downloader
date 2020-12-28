@@ -20,15 +20,23 @@ class Downloader
                 unset($results[$key]);
             }
         }
-        dump($results);
-
         return $results;
     }
 
     public function videoId($link)
     {
-        preg_match('/[a-zA-Z0-9\-]*$/', $link, $match);
-
-        return $match[0];
+        preg_match('/\=[\S]*$/', $link, $match);
+        if(($index = strpos($match[0], '&')) !== false){
+            return (substr($match[0], 1, $index - 1));
+        }else{
+            return substr($match[0], 1);
+        }
     }
+
+    public function videoTitle($link)
+    {
+        $videoTitle = explode('</title>', explode('<title>', file_get_contents($link))[1])[0];
+        return substr(str_replace("amp;","",$videoTitle), 0, -10);
+    }
+
 }

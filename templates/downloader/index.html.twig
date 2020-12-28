@@ -13,43 +13,48 @@
             {% include('downloader/form.html.twig') %}
             <div class="mt-1">
               {% if videoId != "" %}
-                  <img src="https://img.youtube.com/vi/{{ videoId }}/mqdefault.jpg">
-                  <div class="btn-group">
-                      <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Video + Audio
-                      </button>
-                      <div class="dropdown-menu">
-                      {% for link in links %}
-                        {% if ('audio' in link.format and 'video' in link.format) %}
-                          <a class="dropdown-item" target="_blank" href="{{ link.url }}">{{ link.format }}</a>
-                        {% endif %}
-                      {% endfor %}
-                      </div>
-                  </div>      
-                  <div class="btn-group">
-                      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Video
-                      </button>
-                      <div class="dropdown-menu">
-                      {% for link in links %}
-                        {% if 'audio' not in link.format %}
-                          <a class="dropdown-item" target="_blank" href="{{ link.url }}">{{ link.format }}</a>
-                        {% endif %}
-                      {% endfor %}
-                      </div>
+                <div class="result-border mt-2">
+                  <h4>{{ videoTitle }}</h4>
+                  <a href="https://www.youtube.com/watch?v={{ videoId }}" target="_blank"><img class="mt-3" src="https://img.youtube.com/vi/{{ videoId }}/mqdefault.jpg"></a></br>
+                  <div class="mt-4">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Video + Audio
+                        </button>
+                        <div class="dropdown-menu">
+                        {% for link in links %}
+                          {% if ('audio' in link.format and 'video' in link.format) %}
+                            <a class="dropdown-item" target="_blank" href="{{ link.url }}">{{ link.format }}</a>
+                          {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>      
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Video
+                        </button>
+                        <div class="dropdown-menu">
+                        {% for link in links %}
+                          {% if 'audio' not in link.format %}
+                            <a class="dropdown-item" target="_blank" href="{{ link.url }}">{{ link.format }}</a>
+                          {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Audio
+                        </button>
+                        <div class="dropdown-menu">
+                        {% for link in links %}
+                          {% if 'video' not in link.format %}
+                            <a class="dropdown-item" target="_blank" href="{{ link.url }}">{{ link.format }}</a>
+                          {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
                   </div>
-                  <div class="btn-group">
-                      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Audio
-                      </button>
-                      <div class="dropdown-menu">
-                      {% for link in links %}
-                        {% if 'video' not in link.format %}
-                          <a class="dropdown-item" target="_blank" href="{{ link.url }}">{{ link.format }}</a>
-                        {% endif %}
-                      {% endfor %}
-                      </div>
-                  </div>
+                </div>
               {% endif %}
             </div>
           </h2>
