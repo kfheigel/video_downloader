@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Form\ContactFormType;
 use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -40,6 +39,7 @@ class ContactController extends AbstractController
                     'subject' => $data['subject'],
                     'text' => $data['text'],
                 ]);
+            
 
             try {
                 $mailer->send($email);
@@ -47,6 +47,8 @@ class ContactController extends AbstractController
                     'success',
                     "Your email is on it's way to me!"
                 );
+                
+    
             } catch (TransportExceptionInterface $e) {
                 $this->addFlash(
                     'danger',
