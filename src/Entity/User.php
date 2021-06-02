@@ -54,9 +54,15 @@ class User implements UserInterface
      */
     private $createdAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=UrlShortener::class, mappedBy="user_id")
+     */
+    private $urlShorteners;
+
     public function __construct()
     {
         $this->userHistory = new ArrayCollection();
+        $this->urlShorteners = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -187,6 +193,36 @@ class User implements UserInterface
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UrlShortener[]
+     */
+    public function getUrlShorteners(): Collection
+    {
+        return $this->urlShorteners;
+    }
+
+    public function addUrlShortener(UrlShortener $urlShortener): self
+    {
+        if (!$this->urlShorteners->contains($urlShortener)) {
+            $this->urlShorteners[] = $urlShortener;
+            $urlShortener->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUrlShortener(UrlShortener $urlShortener): self
+    {
+        if ($this->urlShorteners->removeElement($urlShortener)) {
+            // set the owning side to null (unless already changed)
+            if ($urlShortener->getUserId() === $this) {
+                $urlShortener->setUserId(null);
+            }
+        }
 
         return $this;
     }

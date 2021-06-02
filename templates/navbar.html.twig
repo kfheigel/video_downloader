@@ -9,6 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
             <a class="nav-link {% if app.request.get('_route') == 'downloader' %} active {% endif %}" href="{{ path('downloader') }}">Downloader</a>
+            <a class="nav-link {% if app.request.get('_route') == 'shortener' %} active {% endif %}" href="{{ path('shortener') }}">URL Shortener</a>
             <a class="nav-link {% if app.request.get('_route') == 'about' %} active {% endif %}" href="{{ path('about') }}">About</a>
             <a class="nav-link {% if app.request.get('_route') == 'contact' %} active {% endif %}" href="{{ path('contact') }}">Contact</a>
 
