@@ -28,7 +28,7 @@ class DownloaderController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $videoLink = $data['input'];
-            $logger->info('Form is submitted');
+            $logger->info('Form is submitted. Link to download: ' . $videoLink);
             $links = $youtubeDownload->downloadVideo($videoLink);
             
             $videoId = $youtubeDownload->videoId($videoLink);

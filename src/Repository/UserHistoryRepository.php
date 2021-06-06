@@ -26,6 +26,7 @@ class UserHistoryRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('yt')
             ->select('yt.youtubeLinks', 'yt.videoId', 'yt.videoTitle')
+            ->where('yt.user_id=' . $userId)
             ->distinct(true)
             ->orderBy('yt.id', 'DESC')
             ->setMaxResults(4)
