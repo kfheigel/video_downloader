@@ -28,7 +28,7 @@ class UrlShortener
     private $url_short;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=1100)
      */
     private $url_long;
 
