@@ -36,6 +36,20 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    /**
+     * @return User[] Returns an array of UserHistory objects
+     */
+    public function deleteUser($userId)
+    {
+        return $this->createQueryBuilder('u')
+            ->delete()
+            ->from(User::class, 'u')
+            ->where('u.user_id = ' . $userId)
+            ->getQuery()
+            ->execute()
+        ;
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

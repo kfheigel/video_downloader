@@ -1,5 +1,15 @@
 {% block navbar %}
+<script>
+// Get the modal
+var modal = document.getElementById('delete');
 
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand link" href="{{ path('index') }}"><img rel="icon" type="image/x-icon" height="15" alt="Heivice icon" src="{{ asset('favicon/favicon.ico') }}" />eivice</a>
@@ -29,7 +39,7 @@
                         {% if  app.user %}
                             <a class="dropdown-item {% if app.request.get('_route') == 'logout' %} active {% endif %}" href="{{ path('app_logout') }}">Logout</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item disabled text-danger {% if app.request.get('_route') == '' %} active {% endif %}" href="#">Delete Account</a>
+                            <a class="dropdown-item text-danger {% if app.request.get('_route') == '' %} active {% endif %}" onclick="document.getElementById('delete').style.display='block'">Delete Account</a>
                         {% else %}
                             <a class="dropdown-item {% if app.request.get('_route') == 'login' %} active {% endif %}" href="{{ path('app_login') }}">Login</a>
                             <a class="dropdown-item {% if app.request.get('_route') == 'register' %} active {% endif %}" href="{{ path('app_register') }}">Register</a>
@@ -42,5 +52,20 @@
         </div>
     </div>
 </nav>
+
+<div id="delete" class="modal">
+  <span onclick="document.getElementById('delete').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" action="/index.php">
+    <div class="container">
+      <h1>Delete Account</h1>
+      <p>Are you sure you want to delete your account?</p>
+
+      <div class="clearfix">
+        <a class="btn btn-secondary" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">Cancel</a>
+        <a class="btn btn-danger" href="{{ path('delete_account') }}">Delete</a>
+      </div>
+    </div>
+  </form>
+</div>
 
 {% endblock %}

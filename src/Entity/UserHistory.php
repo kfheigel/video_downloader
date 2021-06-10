@@ -29,7 +29,7 @@ class UserHistory
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="userHistory")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $user_id;
 

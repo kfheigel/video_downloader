@@ -19,21 +19,22 @@ class UrlShortener
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="urlShorteners")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $user_id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $url_short;
 
     /**
-     * @ORM\Column(type="string", length=1100)
+     * @ORM\Column(type="string", length=1100, nullable=true)
      */
     private $url_long;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $created_at;
 
