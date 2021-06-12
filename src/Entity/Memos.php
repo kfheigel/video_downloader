@@ -19,6 +19,7 @@ class Memos
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="memos")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $user_id;
 
