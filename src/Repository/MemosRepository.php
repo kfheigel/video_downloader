@@ -19,6 +19,20 @@ class MemosRepository extends ServiceEntityRepository
         parent::__construct($registry, Memos::class);
     }
 
+        /**
+     * @return Memos[] Returns an array of UserHistory objects
+     */
+    public function findUserMemos($userId)
+    {
+        return $this->createQueryBuilder('m')
+            ->select('m.memo', 'm.created_at', 'm.trash')
+            ->where('m.user_id=' . $userId)
+            ->orderBy('m.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Memos[] Returns an array of Memos objects
     //  */

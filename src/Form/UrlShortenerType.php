@@ -14,7 +14,6 @@ class UrlShortenerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('url')
             ->add('url', UrlType::class, [
                 'required' => true,
                 'label' => false,

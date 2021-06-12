@@ -14,7 +14,9 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item {% if app.request.get('_route') == 'downloader' %} active {% endif %}" href="{{ path('downloader') }}">Downloader</a>
                         <a class="dropdown-item {% if app.request.get('_route') == 'shortener' %} active {% endif %}" href="{{ path('shortener') }}">URL Shortener</a>
-                        <a class="dropdown-item {% if app.request.get('_route') == '' %} active {% endif %}" href="{{ path('memos') }}">Memos</a>
+                        {% if  app.user %}
+                            <a class="dropdown-item {% if app.request.get('_route') == '' %} active {% endif %}" href="{{ path('memos') }}">Memos</a>
+                        {% endif %}
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item disabled {% if app.request.get('_route') == '' %} active {% endif %}" href="#">Orbit Generator</a>
                         <a class="dropdown-item disabled {% if app.request.get('_route') == '' %} active {% endif %}" href="#">Logistic Map Graph</a>

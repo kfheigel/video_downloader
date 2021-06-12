@@ -18,6 +18,9 @@ class DeleteAccountController extends AbstractController
      */
     public function index(Session $session, LoggerInterface $logger): Response
     {
+        if ($this->getUser()===null) {
+            return $this->redirectToRoute('index');
+        }
         $em = $this->getDoctrine()->getManager();
         $user_id = $this->getUser()->getId();
 

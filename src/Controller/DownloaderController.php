@@ -19,7 +19,7 @@ class DownloaderController extends AbstractController
     public function index(Request $request, LoggerInterface $logger, Downloader $youtubeDownload): Response
     {   
         
-        $logger->info('IndexController started working');
+        $logger->info('DownloadController started working');
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createForm(VideoDownloadType::class);

@@ -4,31 +4,30 @@
 
 {% block body %}
 
-  <div class="masthead text-black text-center mt-5 height">
+<div class="masthead text-black text-center mt-5 height">
     <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-              <div class="card-columns">
-              {# {% set continue = false %}
-              {% for link in history %}
-                {% if link.videoId == videoId %}
-                  {% set continue = true %}
-                {% else %}
-                  <div class="card w-100 mb-2">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ link.videoTitle }}</h5>
-                      <a href="https://www.youtube.com/watch?v={{ link.videoId }}" target="_blank"><img class="mt-3" height="100px" src="https://img.youtube.com/vi/{{ link.videoId }}/mqdefault.jpg"></a></br>                  
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <h2 class="mb-5"> 
+                        <div class="mt-1">
+                            <div class="result-border mt-2">
+                                {% include('memos/form.html.twig') %}
+                            </div>
+                        </div>
+                    </h2>
+                    <div class="card-columns">
+                        {% for memo in history %}
+                            <div class="card w-100 mb-2">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ memo.memo }}</h5>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                  </div>
-                  {% if continue %}
-                    {% set continue = false %}
-                  {% endif %}
-                {% endif %}
-              {% endfor %} #}
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 {% endblock %}
