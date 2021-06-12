@@ -59,3 +59,13 @@ eval("// extracted by mini-css-extract-plugin//# sourceURL=[module]\n//# sourceM
 /***/ })
 
 },[["./assets/app.js","runtime","vendors~app"]]]);
+
+// Get the modal
+var modal = document.getElementById('delete');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

@@ -1,15 +1,4 @@
 {% block navbar %}
-<script>
-// Get the modal
-var modal = document.getElementById('delete');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand link" href="{{ path('index') }}"><img rel="icon" type="image/x-icon" height="15" alt="Heivice icon" src="{{ asset('favicon/favicon.ico') }}" />eivice</a>
@@ -25,7 +14,7 @@ window.onclick = function(event) {
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item {% if app.request.get('_route') == 'downloader' %} active {% endif %}" href="{{ path('downloader') }}">Downloader</a>
                         <a class="dropdown-item {% if app.request.get('_route') == 'shortener' %} active {% endif %}" href="{{ path('shortener') }}">URL Shortener</a>
-                        <a class="dropdown-item disabled {% if app.request.get('_route') == '' %} active {% endif %}" href="#">Memos</a>
+                        <a class="dropdown-item {% if app.request.get('_route') == '' %} active {% endif %}" href="{{ path('memos') }}">Memos</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item disabled {% if app.request.get('_route') == '' %} active {% endif %}" href="#">Orbit Generator</a>
                         <a class="dropdown-item disabled {% if app.request.get('_route') == '' %} active {% endif %}" href="#">Logistic Map Graph</a>
@@ -54,15 +43,17 @@ window.onclick = function(event) {
 </nav>
 
 <div id="delete" class="modal">
-  <span onclick="document.getElementById('delete').style.display='none'" class="close" title="Close Modal">&times;</span>
   <form class="modal-content" action="/index.php">
     <div class="container">
-      <h1>Delete Account</h1>
-      <p>Are you sure you want to delete your account?</p>
+    <span onclick="document.getElementById('delete').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <div class="modal-container">
+        <h1>Delete Account</h1>
+        <p>Are you sure you want to delete your account?</p>
 
-      <div class="clearfix">
-        <a class="btn btn-secondary" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">Cancel</a>
-        <a class="btn btn-danger" href="{{ path('delete_account') }}">Delete</a>
+        <div class="clearfix">
+          <a class="cancelbtn btn btn-secondary" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">Cancel</a>
+          <a class="deletebtn btn btn-danger" href="{{ path('delete_account') }}">Delete</a>
+        </div>
       </div>
     </div>
   </form>

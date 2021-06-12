@@ -59,10 +59,16 @@ class User implements UserInterface
      */
     private $urlShorteners;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Memos::class, mappedBy="user_id")
+     */
+    private $memos;
+
     public function __construct()
     {
         $this->userHistory = new ArrayCollection();
         $this->urlShorteners = new ArrayCollection();
+        $this->memos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -221,6 +227,36 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($urlShortener->getUserId() === $this) {
                 $urlShortener->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Memos[]
+     */
+    public function getMemos(): Collection
+    {
+        return $this->memos;
+    }
+
+    public function addMemo(Memos $memo): self
+    {
+        if (!$this->memos->contains($memo)) {
+            $this->memos[] = $memo;
+            $memo->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMemo(Memos $memo): self
+    {
+        if ($this->memos->removeElement($memo)) {
+            // set the owning side to null (unless already changed)
+            if ($memo->getUserId() === $this) {
+                $memo->setUserId(null);
             }
         }
 
