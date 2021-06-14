@@ -38,6 +38,11 @@ class Memos
      */
     private $trash;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $title;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +92,18 @@ class Memos
     public function setTrash(bool $trash): self
     {
         $this->trash = $trash;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Memos{% endblock %}
+
+{% block body %}
+
+<div class="masthead text-black text-center mt-5 height">
+    <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <h2 class="mb-5"> 
+                        <div class="mt-1">
+                            <div class="result-border mt-2">
+                                {% include('memos/edit_form.html.twig') %}
+                            </div>
+                        </div>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

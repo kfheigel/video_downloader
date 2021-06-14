@@ -2,9 +2,14 @@
 {{ form_start(form) }}
 
     <div class="row mt-3">
-        <div class="col" contenteditable="true">
-            {{ form_label(form.memo, 'Type your memo') }}
-            {{ form_row(form.memo, { 'attr': {'class': 'form-control', 'style': 'height: 130px;'}}) }}
+        <div class="col">
+            {{ form_row(form.title, { 'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            {{ form_row(form.memo, { 'attr': {'class': 'form-control', 'style': 'height: 130px;', 'contenteditable': 'true'}}) }}
         </div>
     </div>
 

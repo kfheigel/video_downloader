@@ -1,0 +1,27 @@
+{% block form %}
+{{ form_start(form) }}
+
+    <div class="row mt-3">
+        <div class="col">
+            {{ form_row(form.title, { 'attr': {'class': 'form-control'}, 'value': memo.title}) }}
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col">
+            {{ form_row(form.memo, { 'attr': {'class': 'form-control', 'style': 'height: 130px;', 'contenteditable': 'true'}, 'value':  memo.memo}) }}
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col">
+            <div class='btn-group'>
+                {{ form_row(form.submit, { 'attr': {'class': 'btn btn-lg btn-primary mr-3 mt-3 mb-3'}, 'label': 'Save'}) }}
+                <a href="{{ path('memos') }}" class='btn btn-lg btn-warning ml-3 mt-3 mb-3'> Cancel </a>
+            </div>
+            
+        </div>
+    </div>
+
+{{ form_end(form) }}
+{% endblock %}

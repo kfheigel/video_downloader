@@ -28,6 +28,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% if  app.user %}
+                            <a class="dropdown-item disabled {% if app.request.get('_route') == 'logout' %} active {% endif %}" href="{{ path('my_account') }}">My Account</a>
                             <a class="dropdown-item {% if app.request.get('_route') == 'logout' %} active {% endif %}" href="{{ path('app_logout') }}">Logout</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item text-danger {% if app.request.get('_route') == '' %} active {% endif %}" onclick="document.getElementById('delete').style.display='block'">Delete Account</a>

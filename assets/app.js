@@ -12,16 +12,16 @@ import './styles/app.css';
 import './bootstrap';
 import $ from 'jquery';
 
-var contactSubmit = document.getElementById('contact_form_submit');
+// var contactSubmit = document.getElementById('contact_form_submit');
 
-contactSubmit.onclick = clearContactInputText();
+// contactSubmit.onclick = clearContactInputText();
 
-function clearContactInputText(){
-  var contactInputs = document.getElementsByClassName('form-control');
-  for (var i = 0; i < contactInputs.length; i++) {
-    contactInputs[i].value = "";
-  }
-}
+// function clearContactInputText(){
+//   var contactInputs = document.getElementsByClassName('contact_form');
+//   for (var i = 0; i < contactInputs.length; i++) {
+//     contactInputs[i].value = "";
+//   }
+// }
 
 var downloaderSubmit = document.getElementById('video_download_submit');
 
@@ -80,3 +80,13 @@ function changeButtonText(){
       break;
     }
   }
+
+  // Get the modal
+var modal = document.getElementById('delete');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}

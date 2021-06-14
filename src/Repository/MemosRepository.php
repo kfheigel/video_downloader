@@ -19,18 +19,69 @@ class MemosRepository extends ServiceEntityRepository
         parent::__construct($registry, Memos::class);
     }
 
-        /**
+    /**
      * @return Memos[] Returns an array of UserHistory objects
      */
     public function findUserMemos($userId)
     {
         return $this->createQueryBuilder('m')
-            ->select('m.memo', 'm.created_at', 'm.trash')
+            ->select('m.id','m.memo', 'm.created_at', 'm.trash', 'm.title')
             ->where('m.user_id=' . $userId)
             ->orderBy('m.id', 'DESC')
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    /**
+     * @return Memos[] Returns an array of UserHistory objects
+     */
+    public function deleteUserMemos($userId, $memoId)
+    {
+        $queryString='DELETE FROM App\Entity\Memos m WHERE m.user_id = :userId AND m.id = :memoId ';
+        $queryArray=[
+            'userId' => $userId,
+            'memoId' => $memoId,
+        ];
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery($queryString);
+        $query->setParameters($queryArray);
+
+        return $query->getResult();
+    }
+
+    /**
+     * @return Memos[] Returns an array of UserHistory objects
+     */
+    public function findMemo($memoId)
+    {
+        $queryString='SELECT m FROM App\Entity\Memos m WHERE m.id = :memoId ';
+        $queryArray=[
+            'memoId' => $memoId,
+        ];
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery($queryString);
+        $query->setParameters($queryArray);
+
+        return $query->getResult();
+    }
+
+    /**
+     * @return Memos[] Returns an array of UserHistory objects
+     */
+    public function editUserMemo($memoId, $title, $memo)
+    {
+        $queryString='UPDATE m SET m.title = :title ,m.memo = :memo WHERE m.id = :memoId ';
+        $queryArray=[
+            'memoId' => $memoId,
+            'title' => $title,
+            'memo' => $memo,
+        ];
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery($queryString);
+        $query->setParameters($queryArray);
+
+        return $query->getResult();
     }
 
     // /**

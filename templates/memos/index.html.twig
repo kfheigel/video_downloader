@@ -12,16 +12,20 @@
                     <h2 class="mb-5"> 
                         <div class="mt-1">
                             <div class="result-border mt-2">
+                                Memo
                                 {% include('memos/form.html.twig') %}
                             </div>
                         </div>
                     </h2>
                     <div class="card-columns">
                         {% for memo in history %}
-                            <div class="card w-100 mb-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ memo.memo }}</h5>
+                            <div class="card w-100">
+                            <h5 class="card-title">{{ memo.title }}</h5>
+                                <div class="card-body pb-5">
+                                    <p class="card-text">{{ memo.memo }}</p>
                                 </div>
+                                <a href="{{ path('memos_edit', {'id': memo.id}) }}" class='pr-4'><img class='pen-edit' src="{{ asset('img/edit.png') }}" ></a>
+                                <a href="{{ path('memos_delete', {'id': memo.id}) }}" class='pl-4'><img class='trash-delete' src="{{ asset('img/delete.png') }}" ></a>
                             </div>
                         {% endfor %}
                     </div>
