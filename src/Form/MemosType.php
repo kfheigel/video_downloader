@@ -18,16 +18,16 @@ class MemosType extends AbstractType
             ->add('title', TextType::class, [
                 'required' => false,
                 'label' => false,
-                // 'attr' => [
-                //     'placeholder' => 'Title',
-                // ],
+                'attr' => [
+                    'placeholder' => 'Title',
+                ],
             ])
             ->add('memo', TextareaType::class, [
                 'required' => true,
                 'label' => false,
-                // 'attr' => [
-                //     'placeholder' => 'Type your memo',
-                // ],
+                'attr' => [
+                    'placeholder' => 'Type your memo',
+                ],
             ])
             ->add('submit', SubmitType::class)
         ;
